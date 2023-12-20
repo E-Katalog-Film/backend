@@ -84,7 +84,7 @@ func TestIsPasswordValid(t *testing.T) {
 func TestUsernameExists(t *testing.T) {
 	var user User
 	user.Username = "Ibrohim"
-	datauser := usernameExists("mongoenvkatalogfilm", "katalogfilm", user)
+	datauser := UsernameExists("mongoenvkatalogfilm", "katalogfilm", user)
 
 	fmt.Println(datauser)
 }

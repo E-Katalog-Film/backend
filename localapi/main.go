@@ -111,7 +111,7 @@ func AmbilSemuaFilmAPI(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	fmt.Fprintf(w, katalogfilm.AmbilSemuaFilm("publickeykatalogfilm", "mongoenvkatalogfilm", "katalogfilm", "film", r))
+	fmt.Fprintf(w, katalogfilm.AmbilSemuaFilm("mongoenvkatalogfilm", "katalogfilm", "film", r))
 }
 
 func AmbilSatuFilmAPI(w http.ResponseWriter, r *http.Request) {
@@ -124,7 +124,7 @@ func AmbilSatuFilmAPI(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	fmt.Fprintf(w, katalogfilm.AmbilSatuFilm("publickeykatalogfilm", "mongoenvkatalogfilm", "katalogfilm", "film", r))
+	fmt.Fprintf(w, katalogfilm.AmbilSatuFilm("mongoenvkatalogfilm", "katalogfilm", "film", r))
 }
 
 func UpdateFilmAPI(w http.ResponseWriter, r *http.Request) {

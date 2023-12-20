@@ -44,7 +44,7 @@ func IsPasswordValid(mconn *mongo.Database, collname string, userdata User) bool
 	return hashChecker
 }
 
-func usernameExists(mongoenvkatalogfilm, dbname string, userdata User) bool {
+func UsernameExists(mongoenvkatalogfilm, dbname string, userdata User) bool {
 	mconn := SetConnection(mongoenvkatalogfilm, dbname).Collection("user")
 	filter := bson.M{"username": userdata.Username}
 
@@ -87,7 +87,7 @@ func FindFilm(mconn *mongo.Database, collname string, datafilm Film) Film {
 	return atdb.GetOneDoc[Film](mconn, collname, filter)
 }
 
-func idFilmExists(mongoenvkatalogfilm, dbname string, datafilm Film) bool {
+func IdFilmExists(mongoenvkatalogfilm, dbname string, datafilm Film) bool {
 	mconn := SetConnection(mongoenvkatalogfilm, dbname).Collection("film")
 	filter := bson.M{"id": datafilm.ID}
 
@@ -107,5 +107,48 @@ func EditFilm(mconn *mongo.Database, collname string, datafilm Film) interface{}
 
 func DeleteFilm(mconn *mongo.Database, collname string, datafilm Film) interface{} {
 	filter := bson.M{"id": datafilm.ID}
+	return atdb.DeleteOneDoc(mconn, collname, filter)
+}
+
+//------------------------------------------------------------------- Komentar
+
+// Create
+
+func InsertKomentar(mconn *mongo.Database, collname string, datakomentar Komentar) interface{} {
+	return atdb.InsertOneDoc(mconn, collname, datakomentar)
+}
+
+// Read
+
+func GetAllKomentar(mconn *mongo.Database, collname string) []Komentar {
+	film := atdb.GetAllDoc[[]Komentar](mconn, collname)
+	return film
+}
+
+func FindKomentar(mconn *mongo.Database, collname string, datakomentar Komentar) Komentar {
+	filter := bson.M{"id": datakomentar.ID}
+	return atdb.GetOneDoc[Komentar](mconn, collname, filter)
+}
+
+func IdKomentarExists(mongoenvkatalogfilm, dbname string, datakomentar Komentar) bool {
+	mconn := SetConnection(mongoenvkatalogfilm, dbname).Collection("komentar")
+	filter := bson.M{"id": datakomentar.ID}
+
+	var komentar Komentar
+	err := mconn.FindOne(context.Background(), filter).Decode(&komentar)
+	return err == nil
+}
+
+// Update
+
+func EditKomentar(mconn *mongo.Database, collname string, datakomentar Komentar) interface{} {
+	filter := bson.M{"id": datakomentar.ID}
+	return atdb.ReplaceOneDoc(mconn, collname, filter, datakomentar)
+}
+
+// Delete
+
+func DeleteKomentar(mconn *mongo.Database, collname string, datakomentar Komentar) interface{} {
+	filter := bson.M{"id": datakomentar.ID}
 	return atdb.DeleteOneDoc(mconn, collname, filter)
 }
