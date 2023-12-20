@@ -59,8 +59,9 @@ type Komentar struct {
 
 type Rating struct {
 	ID       string `json:"id" bson:"id"`
-	Name     string `json:"name" bson:"name"`
-	Rating   string `json:"rating" bson:"rating"`
+	ID_Film  string `json:"id_film" bson:"id_film"`
+	Username string `json:"username" bson:"username"`
+	Rating   int    `json:"rating" bson:"rating"`
 	Kualitas string `json:"kualitas" bson:"kualitas"`
 	Note     string `json:"note" bson:"note"`
 	Tanggal  string `json:"tanggal" bson:"tanggal"`

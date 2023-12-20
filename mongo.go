@@ -152,3 +152,55 @@ func DeleteKomentar(mconn *mongo.Database, collname string, datakomentar Komenta
 	filter := bson.M{"id": datakomentar.ID}
 	return atdb.DeleteOneDoc(mconn, collname, filter)
 }
+
+//------------------------------------------------------------------- Rating
+
+// Create
+
+func InsertRating(mconn *mongo.Database, collname string, datarating Rating) interface{} {
+	return atdb.InsertOneDoc(mconn, collname, datarating)
+}
+
+// Read
+
+func GetAllRating(mconn *mongo.Database, collname string) []Rating {
+	film := atdb.GetAllDoc[[]Rating](mconn, collname)
+	return film
+}
+
+func FindRating(mconn *mongo.Database, collname string, datarating Rating) Rating {
+	filter := bson.M{"id": datarating.ID}
+	return atdb.GetOneDoc[Rating](mconn, collname, filter)
+}
+
+func IdRatingExists(mongoenvkatalogfilm, dbname string, datarating Rating) bool {
+	mconn := SetConnection(mongoenvkatalogfilm, dbname).Collection("rating")
+	filter := bson.M{"id": datarating.ID}
+
+	var rating Rating
+	err := mconn.FindOne(context.Background(), filter).Decode(&rating)
+	return err == nil
+}
+
+func RatingFilmExists(mongoenvkatalogfilm, dbname string, datarating Rating) bool {
+	mconn := SetConnection(mongoenvkatalogfilm, dbname).Collection("rating")
+	filter := bson.M{"id_film": datarating.ID_Film, "username": datarating.Username}
+
+	var rating Rating
+	err := mconn.FindOne(context.Background(), filter).Decode(&rating)
+	return err == nil
+}
+
+// Update
+
+func EditRating(mconn *mongo.Database, collname string, datarating Rating) interface{} {
+	filter := bson.M{"id": datarating.ID}
+	return atdb.ReplaceOneDoc(mconn, collname, filter, datarating)
+}
+
+// Delete
+
+func DeleteRating(mconn *mongo.Database, collname string, datarating Rating) interface{} {
+	filter := bson.M{"id": datarating.ID}
+	return atdb.DeleteOneDoc(mconn, collname, filter)
+}
