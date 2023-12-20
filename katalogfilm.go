@@ -753,7 +753,7 @@ func TambahRating(publickeykatalogfilm, mongoenvkatalogfilm, dbname, collname st
 	} else if rating.Rating >= 7 {
 		rating.Kualitas = "Sedang"
 	} else if rating.Rating >= 5 {
-		rating.Kualitas = "rendah"
+		rating.Kualitas = "Rendah"
 	}
 
 	rating.Username = tokenusername
@@ -850,7 +850,7 @@ func UpdateRating(publickeykatalogfilm, mongoenvkatalogfilm, dbname, collname st
 	} else if rating.Rating >= 7 {
 		rating.Kualitas = "Sedang"
 	} else if rating.Rating >= 5 {
-		rating.Kualitas = "rendah"
+		rating.Kualitas = "Rendah"
 	}
 
 	rating.ID_Film = oldrating.ID_Film
