@@ -34,6 +34,7 @@ type Pesan struct {
 	Status  bool        `json:"status" bson:"status"`
 	Message string      `json:"message" bson:"message"`
 	Data    interface{} `json:"data,omitempty" bson:"data,omitempty"`
+	Role    string      `json:"role,omitempty" bson:"role,omitempty"`
 	Token   string      `json:"token,omitempty" bson:"token,omitempty"`
 }
 

@@ -5,14 +5,14 @@ import (
 	"testing"
 )
 
-var privatekeykatalogfilm = ""
-var publickeykatalogfilm = ""
+var privatekeykatalogfilm = "6421319929994afab5fea4d63daad68f1d3f64d01597b5b15781f2dbd4baeef418e22606ee1830ef9c93ce12e27964d4a4d33630c735af337818fd827382ac56"
+var publickeykatalogfilm = "18e22606ee1830ef9c93ce12e27964d4a4d33630c735af337818fd827382ac56"
 var encode = ""
 
 func TestGeneratePaseto(t *testing.T) {
-	privateKey, publicKey := GenerateKey()
-	fmt.Println("Private Key: " + privateKey)
-	fmt.Println("Public Key: " + publicKey)
+	privatekeykatalogfilm, publickeykatalogfilm := GenerateKey()
+	fmt.Println("Private Key: " + privatekeykatalogfilm)
+	fmt.Println("Public Key: " + publickeykatalogfilm)
 }
 
 func TestEncode(t *testing.T) {

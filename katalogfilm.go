@@ -115,6 +115,7 @@ func Login(privatekeykatalogfilm, mongoenvkatalogfilm, dbname, collname string, 
 	response.Status = true
 	response.Message = "Berhasil login"
 	response.Token = tokenstring
+	response.Role = auth.Role
 
 	return ReturnStruct(response)
 }

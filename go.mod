@@ -1,6 +1,6 @@
 module github.com/E-Katalog-Film/backend
 
-go 1.21.3
+go 1.19
 
 require (
 	aidanwoods.dev/go-paseto v1.5.1
